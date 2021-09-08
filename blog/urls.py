@@ -9,4 +9,7 @@ urlpatterns = [
     path("drafts/", views.post_draft_list, name="post_draft_list"),
     path("post/<pk>/publish/", views.post_publish, name="post_publish"),
     path("post/<pk>/remove", views.post_remove, name="post_remove"),
+    path("category/", views.CategoryList.as_view(), name= "category_list"),
+    path("category/new", views.CategoryNew.as_view(), name="category_new"),
+    path('category/<category>', views.CategoryPostList.as_view(), name= "category_post_list"),
 ]

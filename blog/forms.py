@@ -16,11 +16,10 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = (
             "title",
+            "category",
             "text",
         )
 
-        # widgets = {
-        #     "category": forms.Select(
-        #         choices=choice_list, attrs={"class": "form-control"}
-        #     ),
-        # }
+        widgets = {
+            "category": forms.Select(attrs={"class": "form-control"}),
+        }

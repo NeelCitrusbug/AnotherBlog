@@ -1,7 +1,7 @@
 from django.shortcuts import render,get_object_or_404, redirect
 from django.utils import timezone
 from .forms import PostForm
-from .models import Post
+from .models import Post,Category
 from django.core.paginator import Paginator
 
 from django.views.generic.list import ListView
@@ -91,19 +91,31 @@ def post_remove(request, pk):
     post.delete()
     return redirect("post_list")
 
+class CategoryList(ListView):
+    model = Category()
+    template_name = "blog/category_list.html"
+    context_object_name= "category"
+    queryset = Category.objects.all()
+    
 
-# class CategoryNew(CreateView):
-#     model = Category
-#     context_object_name = "category"
-#     template_name = "blog/category_edit.html"
-#     fields = "__all__"
+class CategoryPostList(ListView):
+    template_name = "blog/category_post_list.html"
+    context_object_name = "category"
+    
+    def get_queryset(self):
+        content={
+            'cat': self.kwargs['category'],
+            'posts':Post.objects.filter(category__name= self.kwargs['category']).filter(published_date__lte=timezone.now())
+        }
+        return content 
 
+class CategoryNew(CreateView):
+    model = Category
+    context_object_name = "category"
+    template_name = "blog/category_edit.html"
+    fields = "__all__"
+    success_url = reverse_lazy("post_list")
 
-# class CategoryList(ListView):
-#     model = Category
-#     context_object_name = "category"
-#     queryset = Category.objects.all()
-#     template_name = "blog/category_list.html"
 
 
 # def category_detail(request, cats):

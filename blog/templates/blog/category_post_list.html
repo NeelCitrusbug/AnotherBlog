@@ -1,0 +1,18 @@
+{% extends 'blog/base.html'%}
+
+{% block content %}
+<h1 style="margin-bottom: 50px;">{{ category.cat }} Category</h1>
+
+{% for post in category.posts%}
+<article class="post">
+    <time class="date">
+        {{ post.published_date }}
+    </time>
+    <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>({{ post.category }})</h2>
+    <p>{{ post.text|linebreaksbr }}</p>
+</article>
+{% endfor %}
+
+
+
+{% endblock %}
