@@ -32,7 +32,7 @@ class Post(models.Model):
         # remove the last ',' and return the value.
         return ret[:-1]
 
-    def __str__(self):
+    def __str__(self):  
         return self.title
 
 

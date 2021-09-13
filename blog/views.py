@@ -24,16 +24,32 @@ from django.views.generic.edit import FormView
 
 
 def post_list(request):
-    """Returns the all the post objects that are published"""
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by(
+    # query = request.GET['query']
+    query = request.GET.get('query')
+
+    if query:
+        postsTitle = Post.objects.filter(published_date__lte=timezone.now()).filter(title__icontains=query)
+        postsText  =  Post.objects.filter(published_date__lte=timezone.now()).filter(text__icontains=query)
+
+        posts = postsTitle.union(postsText)
+
+    else:
+        posts = Post.objects.filter(published_date__lte=timezone.now()).order_by(
         "-published_date"
     )
+
+    # """Returns the all the post objects that are published"""
+    # posts = Post.objects.filter(published_date__lte=timezone.now()).order_by(
+    #     "-published_date"
+    # )
     p = Paginator(posts, 3)
 
     page_number = request.GET.get("page")  # 1
     page_obj = p.get_page(page_number)  # <Page 1 of 2>
 
-    return render(request, "blog/post_list.html", {"page_obj": page_obj})
+    return render(request, "blog/post_list.html", {"page_obj": page_obj, "query":query})
+
+    
 
 
 def post_detail(request, pk):
@@ -51,7 +67,7 @@ def post_new(request):
         # print(">>>>>>>>>>>>>>>>>>>>>>>>>>>",'asdbaskdbasbjk')
 
         form = PostForm(request.POST)
-        form.category = request.POST.getlist('category')
+        # form.category = request.POST.getlist('category')
         # print(">>>>>>>>>>>>>>>>>>>>>>>>>>>",request.POST.getlist('new-select'))
 
         if form.is_valid():
@@ -84,7 +100,17 @@ def post_edit(request, pk):
 
 
 def post_draft_list(request):
-    posts = Post.objects.filter(published_date__isnull=True).order_by("created_date")
+    query = request.GET.get('query')
+
+    if query:
+        # posts = Post.objects.filter(published_date__isnull=True).order_by("created_date")
+        postsTitle = Post.objects.filter(published_date__isnull=True).filter(title__icontains=query)
+        postsText  =  Post.objects.filter(published_date__isnull=True).filter(text__icontains=query)
+
+        posts = postsTitle.union(postsText)
+    else:
+        posts = Post.objects.filter(published_date__isnull=True).order_by("created_date")
+        
     p = Paginator(posts, 3)
 
     page_number = request.GET.get("page")
@@ -105,11 +131,9 @@ def post_remove(request, pk):
     return redirect("post_list")
 
 def search(request):
-    # query = request.GET.get('query')
+    
     query = request.GET['query']
-    # posts = Post.objects.filter(published_date__lte=timezone.now()).order_by(
-    #     "-published_date"
-    # ).filter(title__icontains=query)
+    
     postsTitle = Post.objects.filter(published_date__lte=timezone.now()).filter(title__icontains=query)
     postsText  =  Post.objects.filter(published_date__lte=timezone.now()).filter(text__icontains=query)
 
@@ -121,11 +145,23 @@ def search(request):
     return render(request, "blog/search.html", {"posts": posts , "query":query})
 
 class CategoryList(ListView):
+   
     model = Category()
     template_name = "blog/category_list.html"
     context_object_name= "category"
-    queryset = Category.objects.all()
-    
+    # queryset = Category.objects.all()
+
+    def get_queryset(self):
+        query = self.request.GET.get('query')
+
+        if query:
+            object_list = Category.objects.filter(name__icontains=query)
+
+        else:
+            object_list = Category.objects.all()   
+        return object_list 
+
+   
 
 class CategoryPostList(ListView):
     template_name = "blog/category_post_list.html"
@@ -143,9 +179,23 @@ class CategoryNew(CreateView):
     context_object_name = "category"
     template_name = "blog/category_edit.html"
     fields = "__all__"
-    success_url = reverse_lazy("post_list")
+    success_url = reverse_lazy("category_list")
 
+class CategoryUpdateView(UpdateView):
+    model = Category
+    fields = ['name']
+    template_name = "blog/category_edit.html"
+    success_url = reverse_lazy("category_list")
 
+def category_remove(request, category):
+    cats = get_object_or_404(Category, name=category)
+    cats.delete()
+    return redirect('category_list')
+
+# def post_remove(request, pk):
+#     post = get_object_or_404(Post, pk=pk)
+#     post.delete()
+#     return redirect("post_list")
 
 # def category_detail(request, cats):
 #     category_posts = Post.objects.filter(category=cats)

@@ -1,14 +1,39 @@
 {% extends 'blog/base.html'%}
 
 {% block content %}
+<div>
+    <form class="d-flex my-4" method="get" action="{% url 'category_list' %}">
+        <input class="form-control me-2 searchBlog" type="search" placeholder="Search" aria-label="Search" name="query"
+            id="query">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+</div>
+<a href="{% url 'category_new' %}" class="btn btn-default top-menu" style="text-decoration: none;">
+    Add Category
+</a>
+
+{% if category %}
 
 {% for cats in category %}
 <article class="post">
 
-    <h2><a href="{% url 'category_post_list' category=cats.name %}">{{ cats.name }}</a></h2>
+    <h2><a href="{% url 'category_post_list' category=cats.name %}">{{ cats.name }}</a>
+        <a class="btn btn-default" href="{% url 'category_edit' pk=cats.id %}">
+            {% include './icons/pencil-fill.svg' %}
+        </a>
+        <a class="btn btn-default" href="{% url 'category_remove' category=cats.name %}">Delete</a>
+    </h2>
 
 </article>
 {% endfor %}
+
+{% else %}
+<p>No Search results found</p>
+
+Your search did not match any document
+<br>
+Try some other keywords
+{% endif %}
 
 
 

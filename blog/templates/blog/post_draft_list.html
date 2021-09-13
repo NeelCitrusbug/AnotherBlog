@@ -11,6 +11,15 @@
 </div>
 {% endfor %} -->
 
+<div>
+    <form class="d-flex my-5" method="get" action="{% url 'post_draft_list' %}">
+        <input class="form-control me-2 searchBlog" type="search" placeholder="Search" aria-label="Search" name="query"
+            id="query">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+</div>
+
+
 {% for post in page_obj%}
 <article class="post">
     <time class="date">
