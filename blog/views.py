@@ -3,6 +3,8 @@ from django.utils import timezone
 from .forms import PostForm
 from .models import Post,Category
 from django.core.paginator import Paginator
+from django.http import HttpResponse
+from django.contrib import messages
 
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -39,17 +41,28 @@ def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     return render(request, "blog/post_detail.html", {"post": post})
 
-
+# class PostNew(CreateView):
+#     model = Post
+#     context_object_name = "post"
+#     template_name = "blog/post_edit.html"
+    
 def post_new(request):
     if request.method == "POST":
+        # print(">>>>>>>>>>>>>>>>>>>>>>>>>>>",'asdbaskdbasbjk')
+
         form = PostForm(request.POST)
+        form.category = request.POST.getlist('category')
+        # print(">>>>>>>>>>>>>>>>>>>>>>>>>>>",request.POST.getlist('new-select'))
 
         if form.is_valid():
+            print(form)
             post = form.save(commit=False)
             post.author = request.user
             post.published_date = timezone.now()
             post.save()
+            
             return redirect("post_detail", pk=post.pk)
+            # return redirect("/")
     else:
         form = PostForm()
     return render(request, "blog/post_edit.html", {"form": form})
@@ -90,6 +103,22 @@ def post_remove(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.delete()
     return redirect("post_list")
+
+def search(request):
+    # query = request.GET.get('query')
+    query = request.GET['query']
+    # posts = Post.objects.filter(published_date__lte=timezone.now()).order_by(
+    #     "-published_date"
+    # ).filter(title__icontains=query)
+    postsTitle = Post.objects.filter(published_date__lte=timezone.now()).filter(title__icontains=query)
+    postsText  =  Post.objects.filter(published_date__lte=timezone.now()).filter(text__icontains=query)
+
+    posts = postsTitle.union(postsText)
+    
+    if posts.count() == 0:
+        messages.warning(request,"No search results found")
+
+    return render(request, "blog/search.html", {"posts": posts , "query":query})
 
 class CategoryList(ListView):
     model = Category()

@@ -24,6 +24,9 @@ body{
     text-decoration: none;
 }
 
+.list1 li{
+    font-family: 'Lobster', cursive;
+}
 
 h1,
 h2,

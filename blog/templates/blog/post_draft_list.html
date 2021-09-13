@@ -16,8 +16,8 @@
     <time class="date">
         created: {{ post.created_date|date:'d-m-Y' }}
     </time>
-    <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
-        <a href="{% url 'category_post_list' category=post.category %}">({{ post.category }})</a>
+    <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a> ({{ post.get_category_values }})
+
     </h2>
     <p>{{ post.text|truncatechars:200 }}</p>
 </article>

@@ -11,6 +11,12 @@
     <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     <title>Django Girls blog</title>
+    <style>
+        .searchBlog {
+            width: 15%;
+            margin-right: 5px;
+        }
+    </style>
 </head>
 
 <body>
@@ -31,6 +37,11 @@
             </a>
             {% endif %}
             <h1> <a href="/">Django Girls Blog</a> </h1>
+            <form class="d-flex" method="get" action="/search">
+                <input class="form-control me-2 searchBlog" type="search" placeholder="Search" aria-label="Search"
+                    name="query" id="query">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
         </div>
     </header>
 

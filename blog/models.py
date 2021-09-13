@@ -14,7 +14,7 @@ class Category(models.Model):
 class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
-    category = models.ForeignKey(Category, on_delete=models.PROTECT, default=1)
+    category = models.ManyToManyField(Category)
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
@@ -22,6 +22,15 @@ class Post(models.Model):
     def publish(self):
         self.published_date = timezone.now()
         self.save()
+
+    def get_category_values(self):
+        ret = ''
+        print(self.category.all())
+        # use models.ManyToMany field's all() method to return all the Category objects that this post belongs to.
+        for cats in self.category.all():
+            ret = ret + cats.name + ','
+        # remove the last ',' and return the value.
+        return ret[:-1]
 
     def __str__(self):
         return self.title

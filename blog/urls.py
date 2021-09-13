@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path,include
 from . import views
 
 urlpatterns = [
@@ -12,4 +12,7 @@ urlpatterns = [
     path("category/", views.CategoryList.as_view(), name= "category_list"),
     path("category/new", views.CategoryNew.as_view(), name="category_new"),
     path('category/<category>', views.CategoryPostList.as_view(), name= "category_post_list"),
+    path('search', views.search, name="search"),
+    # path("select2/", include("django_select2.urls")),
+    
 ]
