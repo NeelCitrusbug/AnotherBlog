@@ -5,6 +5,7 @@ from .models import Post,Category
 from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.contrib import messages
+from django.db.models import Q
 
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -28,10 +29,11 @@ def post_list(request):
     query = request.GET.get('query')
 
     if query:
-        postsTitle = Post.objects.filter(published_date__lte=timezone.now()).filter(title__icontains=query)
-        postsText  =  Post.objects.filter(published_date__lte=timezone.now()).filter(text__icontains=query)
+        # postsTitle = Post.objects.filter(published_date__lte=timezone.now()).filter(title__icontains=query)
+        # postsText  =  Post.objects.filter(published_date__lte=timezone.now()).filter(text__icontains=query)
 
-        posts = postsTitle.union(postsText)
+        # posts = postsTitle.union(postsText)
+        posts = Post.objects.filter(published_date__lte=timezone.now()).filter(Q(title__icontains=query) | Q(text__icontains=query))
 
     else:
         posts = Post.objects.filter(published_date__lte=timezone.now()).order_by(
@@ -104,13 +106,14 @@ def post_draft_list(request):
 
     if query:
         # posts = Post.objects.filter(published_date__isnull=True).order_by("created_date")
-        postsTitle = Post.objects.filter(published_date__isnull=True).filter(title__icontains=query)
-        postsText  =  Post.objects.filter(published_date__isnull=True).filter(text__icontains=query)
+        # postsTitle = Post.objects.filter(published_date__isnull=True).filter(title__icontains=query)
+        # postsText  =  Post.objects.filter(published_date__isnull=True).filter(text__icontains=query)
 
-        posts = postsTitle.union(postsText)
+        # posts = postsTitle.union(postsText)
+        posts = Post.objects.filter(published_date__isnull=True).filter(Q(title__icontains=query) | Q(text__icontains=query))
     else:
         posts = Post.objects.filter(published_date__isnull=True).order_by("created_date")
-        
+
     p = Paginator(posts, 3)
 
     page_number = request.GET.get("page")

@@ -15,6 +15,6 @@ urlpatterns = [
     path('category/<category>/remove', views.category_remove, name= "category_remove"),
     path('category/<pk>/edit',views.CategoryUpdateView.as_view(), name="category_edit"),
     path('search', views.search, name="search"),
-    # path("select2/", include("django_select2.urls")),
+   
     
 ]

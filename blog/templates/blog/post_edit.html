@@ -11,7 +11,7 @@
     <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     <title>Django Girls blog</title>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> -->
 
     {{ form.media.css }}
     <!-- <style>
@@ -35,11 +35,9 @@
                 {% include './icons/file-earmark-plus.svg' %}
             </a>
             <a href="{% url 'category_list' %}" class="top-menu" style="text-decoration: none;">
-                View Categories
+                Categories
             </a>
-            <a href="{% url 'category_new' %}" class="top-menu" style="text-decoration: none;">
-                Add Categories
-            </a>
+
             <a href="{% url 'post_draft_list' %}" class="top-menu" style="text-decoration: none;">
                 <span class="glyphicon glyphicon-edit">drafts</span>
             </a>
