@@ -11,14 +11,10 @@
     <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     <title>Django Girls blog</title>
-    <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> -->
+
 
     {{ form.media.css }}
-    <!-- <style>
-        .form-control {
-            width: 100%;
-        }
-    </style> -->
+
     <style>
         input,
         select {
@@ -53,13 +49,7 @@
                 <form method="POST" class="post-form">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <!-- <select name="new-select" multiple=multiple id="id_new_select">
-                        <option value="1">asdas</option>
-                        <option value="2">rrr</option>
-                        <option value="3">xxx</option>
-                        <option value="4">xxczxc</option>
-                        <option value="5">zxczxcxzc</option>
-                    </select> -->
+
                     <button type="submit" class="save btn btn-default">Save</button>
                     <a class="btn btn-default" href="{% url 'post_list' %}">Cancel</a>
                 </form>
@@ -69,14 +59,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-    <!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> -->
+
     {{ form.media.js }}
-    <!-- <script>
-        $(document).ready(function () {
-            $('.form-control').select2();
-            // $('.new-select').select2();
-        });
-    </script> -->
+
 
 </body>
 

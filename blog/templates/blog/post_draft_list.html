@@ -3,13 +3,7 @@
 
 {% block content %}
 
-<!-- {% for post in page_obj %}
-<div class="post">
-    <p class="date">created: {{ post.created_date|date:'d-m-Y' }}</p>
-    <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-    <p>{{ post.text|truncatechars:200 }}</p>
-</div>
-{% endfor %} -->
+
 
 <div>
     <form class="d-flex my-5" method="get" action="{% url 'post_draft_list' %}">
@@ -25,8 +19,8 @@
     <time class="date">
         created: {{ post.created_date|date:'d-m-Y' }}
     </time>
-    <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a> ({{ post.get_category_values }})
-
+    <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
+        <span class="badge rounded-pill bg-success">{{post.get_category_values}}</span>
     </h2>
     <p>{{ post.text|truncatechars:200 }}</p>
 </article>
