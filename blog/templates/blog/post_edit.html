@@ -11,10 +11,7 @@
     <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     <title>Django Girls blog</title>
-
-
     {{ form.media.css }}
-
     <style>
         input,
         select {
@@ -33,7 +30,6 @@
             <a href="{% url 'category_list' %}" class="top-menu" style="text-decoration: none;">
                 Categories
             </a>
-
             <a href="{% url 'post_draft_list' %}" class="top-menu" style="text-decoration: none;">
                 <span class="glyphicon glyphicon-edit">drafts</span>
             </a>
@@ -49,7 +45,6 @@
                 <form method="POST" class="post-form">
                     {% csrf_token %}
                     {{ form.as_p }}
-
                     <button type="submit" class="save btn btn-default">Save</button>
                     <a class="btn btn-default" href="{% url 'post_list' %}">Cancel</a>
                 </form>
@@ -58,11 +53,7 @@
     </main>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
-
     {{ form.media.js }}
-
-
 </body>
 
 </html>

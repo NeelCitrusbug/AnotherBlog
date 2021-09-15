@@ -2,17 +2,6 @@
 
 {% block content %}
 <article class="post">
-    <aside class="actions">
-        {% if user.is_authenticated %}
-        <a class="btn btn-primary" href="{% url 'post_edit' pk=post.pk %}">
-            {% include './icons/pencil-fill.svg' %}
-        </a>
-        <a class="btn btn-danger" href="{% url 'post_remove' pk=post.pk %}">
-            Delete
-        </a>
-        {% endif %}
-    </aside>
-
     {% if post.published_date %}
     <time class="date">
         {{ post.published_date }}
@@ -23,4 +12,8 @@
     <h2>{{ post.title }}</h2>
     <p>{{ post.text|linebreaksbr }}</p>
 </article>
+<a href="{% url 'post_list' %}" style="color:white;text-decoration:none;"><button type="button"
+        class="btn btn-primary text-light">Back</button></a>
 {% endblock %}
+
+<a href="">Back</a>

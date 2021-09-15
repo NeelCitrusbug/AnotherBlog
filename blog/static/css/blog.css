@@ -110,3 +110,6 @@ h4 {
     font-weight: bold;
 }
 
+.atright{
+    display: inline-block;
+}

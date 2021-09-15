@@ -5,11 +5,11 @@ from django.utils import timezone
 # Create your models here.
 
 class Category(models.Model):
-
     name = models.CharField(max_length=100, verbose_name="Category Name", unique=True)
 
     def __str__(self):
         return self.name
+
 
 class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="author")
@@ -22,15 +22,6 @@ class Post(models.Model):
     def publish(self):
         self.published_date = timezone.now()
         self.save()
-
-    def get_category_values(self):
-        ret = ''
-        
-        # use models.ManyToMany field's all() method to return all the Category objects that this post belongs to.
-        for cats in self.category.all():
-            ret = ret + cats.name + ','
-        # remove the last ',' and return the value.
-        return ret[:-1]
 
     def __str__(self):  
         return self.title
