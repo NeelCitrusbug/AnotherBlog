@@ -10,6 +10,10 @@ from django.urls import reverse_lazy
 
 
 def post_list(request):
+    """
+        it passes list of posts objects that are published to post_list template
+        :return : post objects that are published
+    """
     query = request.GET.get('query')
 
     if query:
@@ -25,11 +29,19 @@ def post_list(request):
     return render(request, "blog/post_list.html", {"page_obj": page_obj, "query":query})
 
 def post_detail(request, pk):
-    """Returns the post object which has been clicked by the user"""
+    """
+    Returns the detail of perticular post which has been clicked by the user
+    :param pk:
+    :return : post object value with primary key value of pk
+    """
     post = get_object_or_404(Post, pk=pk)
     return render(request, "blog/post_detail.html", {"post": post})
 
 def create_post(request):
+    """
+    Creates the new post
+    :return : form object values
+    """
     if request.method == "POST":
         form = PostForm(request.POST)
         
@@ -49,6 +61,11 @@ def create_post(request):
     return render(request, "blog/post_edit.html", {"form": form})
 
 def post_edit(request, pk):
+    """
+    Used to edit the detail of particular post 
+    :param pk:
+    :return : form object of that post
+    """
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)
@@ -69,6 +86,10 @@ def post_edit(request, pk):
     return render(request, "blog/post_edit.html", {"form": form})
 
 def post_draft_list(request):
+    """
+    Returns the list of posts which are not published
+    :return : post objects which are not published
+    """
     query = request.GET.get('query')
 
     if query:
@@ -82,17 +103,31 @@ def post_draft_list(request):
     return render(request, "blog/post_draft_list.html", {"page_obj": page_obj, "query":query})
 
 def post_publish(request, pk):
+    """
+    it's method to publish any post
+    :param pk:
+    
+    """
     post = get_object_or_404(Post, pk=pk)
     post.publish()
     return redirect("post_detail", pk=pk)
 
 def post_remove(request, pk):
+    """
+    It used to delete the particular post
+    :param pk:
+    
+    """
     post = get_object_or_404(Post, pk=pk)
     post.delete()
     return redirect("post_list")
 
 
 class CategoryList(ListView):
+    """
+    Used to give the list of categories
+    :return : all the category objects
+    """
     model = Category()
     template_name = "blog/category_list.html"
     context_object_name= "category"
@@ -108,6 +143,11 @@ class CategoryList(ListView):
 
 
 class CategoryPostList(ListView):
+    """
+    Gives the list of post belonging to the particular category.
+    :param category-name:
+    :return : post objects which belongs to particular category
+    """
     template_name = "blog/category_post_list.html"
     context_object_name = "category"
     
@@ -120,6 +160,10 @@ class CategoryPostList(ListView):
 
 
 class CategoryNew(CreateView):
+    """
+    Creates new category
+    :return : category-name that's been filled in the form by user
+    """
     model = Category
     context_object_name = "category"
     template_name = "blog/category_edit.html"
@@ -128,12 +172,20 @@ class CategoryNew(CreateView):
 
 
 class CategoryUpdateView(UpdateView):
+    """
+    Updates the name of the particular category
+    :return: returns updated category name
+    """
     model = Category
     form_class = CategoryForm
     template_name = "blog/category_edit.html"
     success_url = reverse_lazy("category_list")
 
 def category_remove(request, category):
+    """
+    To remove the particular Category
+    :param category-name:
+    """
     cats = get_object_or_404(Category, name=category)
     cats.delete()
     return redirect('category_list')
