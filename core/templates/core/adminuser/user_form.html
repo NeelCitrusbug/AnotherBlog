@@ -1,0 +1,238 @@
+{% extends 'core/change_form.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load admin_extras %}
+{% load misc_filters %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+
+{% block page_content %}
+    <form id="{{ opts.model_name }}-form" action="" method="post" enctype="multipart/form-data" autocomplete="off">
+
+        {% include "core/partials/form_hidden_fields.html" %}
+
+        <div class="ibox float-e-margins">
+
+            {% include "core/partials/ibox_title.html" with ibox_title="Login Credentials" icon_class="fas fa-sign-in-alt" only %}
+
+            <div class="ibox-content">
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        {{ form.name|as_crispy_field }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    {% if object.pk %}
+                    <div class="col-sm-12">
+                    </div>
+                    {% else %}
+                    <div class="col-sm-6">
+                        {{ form.password1|as_crispy_field }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form.password2|as_crispy_field }}
+                    </div>
+                    {% endif %}
+                </div>
+
+            </div>
+            <!-- /ibox-content -->
+
+        </div>
+        <!-- /ibox --> 
+
+        <div class="ibox float-e-margins">
+
+            {% include "core/partials/ibox_title.html" with ibox_title="Personal Info" icon_class="fas fa-user" only %}
+
+            <div class="ibox-content">
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        {{ form.email|as_crispy_field }}
+                    </div>
+                   
+                    <div class="col-sm-6">
+                        {{ form.is_influencer|as_crispy_field }}
+                    </div>
+                   
+                </div>
+ 
+
+             
+
+                
+
+
+                
+            </div>
+            <!-- /ibox-content -->
+
+        </div>
+        <!-- /ibox -->
+
+      
+        <!-- /ibox -->
+
+
+        {% for formset in inlines %}
+
+
+        <div class="ibox float-e-margins" id="influncer_data">
+
+            {% include "core/partials/ibox_title.html" with ibox_title="Influencer Profile" icon_class="fas fa-user" only %}
+
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-sm-10" style="margin: 15px;">
+                        <div  class="form-group row">
+                            <table class="col-sm-16">
+                                {{ formset.management_form|crispy }}
+                                {% for form in formset.forms %}
+                                <tr class="user_profile_get" id="user_profile_get">
+                                    {% for field in form.visible_fields %}
+                                    <td>
+                                        {# Include the hidden fields in the form #}
+                                        {% if forloop.first %}
+                                        {% for hidden in form.hidden_fields %}
+                                        {{ hidden }}
+                                        {% endfor %}
+                                        {% endif %}
+                                        {{ field.errors.as_ul }}
+
+
+                                        {% if field.name == 'about' %}
+
+                                       <span style="color: #676a6c; font-weight:bold;">{{field.label}} </span> 
+
+                                        {% if field.value %}
+
+                                        <input id="{{ field.auto_id }}" value="{{ field.value }}" type="hidden" name="user_profile-0-about">
+
+                                        {% else %}
+                                        <input id="{{ field.auto_id }}" value="" type="hidden" name="user_profile-0-about">
+                                        {% endif %}
+
+
+                                        <trix-editor input="{{ field.auto_id }}"></trix-editor>
+    
+
+
+                                        {% else %}
+
+                                        {{ field|as_crispy_field }}
+
+                                        {% endif %}
+
+
+                                    </td>
+                                    {% endfor %}
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+
+
+
+
+
+
+
+
+        <div class="ibox float-e-margins">
+
+            {% include "core/partials/ibox_title.html" with ibox_title="Permissions" icon_class="fas fa-key" only %}
+
+            <div class="ibox-content">
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        {% input_icheck form.is_active %}
+                    </div>
+                 
+                </div>
+
+{#                <hr/>#}
+{##}
+
+                <hr/>
+
+              
+
+            </div>
+            <!-- /ibox-content -->
+
+        </div>
+
+        {% include "core/partials/form_footer.html" %}
+
+    </form>
+
+{% endblock %}
+
+
+{% block js %}
+{{ block.super }}
+<script src="{% static 'core/js/userroles.js' %}"></script>
+
+<script>
+    $(function() {
+        userroles.users.details();
+    });
+</script>
+
+<script src="{% static 'core/js/jquery.formset.js' %}"></script>
+
+
+<script>
+
+
+    $("#div_id_user_profile-0-DELETE").hide();
+
+
+
+    $("#id_is_influencer").click(function () {
+
+        var get =$("#id_is_influencer").val();
+
+        if (get === "true"){
+            $("#influncer_data").show();
+        }
+        else {
+            $("#influncer_data").hide();
+
+        }
+    
+    });
+
+
+
+        var get =$("#id_is_influencer").val();
+
+if (get === "true"){
+    $("#influncer_data").show();
+}
+else {
+    $("#influncer_data").hide();
+
+}
+
+
+
+
+
+</script>
+
+
+
+
+{% endblock %}

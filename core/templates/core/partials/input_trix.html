@@ -1,0 +1,12 @@
+<label for="{{ field.auto_id }}">
+    {{ field.label|safe }}{% if field.field.required %}<span class="asteriskField">*</span>{% endif %}
+</label>
+
+{% if field.value %}
+<input id="{{ field.auto_id }}" type="hidden" name="{{ field.name }}" value="{{ field.value }}">
+{% else %}
+<input id="{{ field.auto_id }}" type="hidden" name="{{ field.name }}" value="" >
+
+
+{% endif %}
+<trix-editor input="{{ field.auto_id }}"></trix-editor>

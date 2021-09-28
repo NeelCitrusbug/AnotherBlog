@@ -1,0 +1,6 @@
+{% extends 'core/emails/html/layout.html' %}
+{% load static %}
+
+{% block content %}
+    Hello <strong>{{ admin }}</strong> - There is one new user named {{ user }} is interested for deal id {{ id }}.
+{% endblock %}

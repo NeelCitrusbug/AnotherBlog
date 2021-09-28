@@ -14,9 +14,35 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.conf import settings
 from django.urls import path,include
+from django.views.generic import TemplateView
+from django.contrib.auth import views as auth_views
+from blog import views
+
+admin.site.site_title="DjangoBlog"
+admin.site.site_header="DjangoBlog"
+admin.site.index_title = "Site Administration"
 
 urlpatterns = [
+    
+    path("customadmin/", include("core.urls")),
+    # path("customadmin/", views.IndexView.as_view(), name="index"),
+    
+    path(
+        "auth_password/reset/complete/",
+        auth_views.PasswordResetCompleteView.as_view(),
+        name="password_reset_complete",
+    ),
+    path(
+        "auth_password/reset/done/",
+        auth_views.PasswordResetDoneView.as_view(), 
+        name="password_reset_done",
+    ),
+    # path("auth_password/reset/complete",auth_views.PasswordResetCompleteView.as_view(), name="password_reset_complete",),
+    # path("auth_password/reset/done",auth_views.PasswordResetDoneView.as_view(), name="password_reset_done",),
+
+
     path('admin/', admin.site.urls),
     path('', include('blog.urls')),
     path("select2/", include("django_select2.urls")),

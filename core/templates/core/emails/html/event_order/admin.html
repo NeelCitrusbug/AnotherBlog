@@ -1,0 +1,6 @@
+{% extends 'core/emails/html/layout.html' %}
+{% load static %}
+
+{% block content %}
+    Hello <strong>{{ admin }}</strong> - There is one new event order placed for event id {{ id }} from {{ user }}.
+{% endblock %}

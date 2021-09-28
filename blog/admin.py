@@ -17,3 +17,8 @@ class CategoryAdmin(ImportExportModelAdmin):
     resource_class = CategoryResource
 admin.site.register(Post)
 admin.site.register(Category, CategoryAdmin)
+# admin.site.register(User)
+# admin.site.register(UserProfile)
+# admin.site.register(SubscriptionOrder)
+# admin.site.register(EventOrder)
+

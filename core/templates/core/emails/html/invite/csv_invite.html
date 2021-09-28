@@ -1,0 +1,7 @@
+{% extends 'core/emails/html/layout.html' %}
+{% load static %}
+
+{% block content %}
+Hello -You are Invited to Inrelay  by {{ user }}. Please click the below link to continue...
+<a href="{{current_site}}">Click Here</a>
+{% endblock %}

@@ -1,0 +1,6 @@
+{% extends 'core/emails/html/layout.html' %}
+{% load static %}
+
+{% block content %}
+    Hello <strong>{{ user }}</strong> - There is one new follow request from {{ who }}.
+{% endblock %}

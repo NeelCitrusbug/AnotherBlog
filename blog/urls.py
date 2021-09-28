@@ -1,6 +1,8 @@
 from django.urls import path,include
 from . import views
 
+# app_name = 'blog'
+
 urlpatterns = [
     path("", views.post_list, name="post_list"),
     path("post/<int:pk>/", views.post_detail, name="post_detail"),
@@ -14,4 +16,11 @@ urlpatterns = [
     path('category/<category>', views.CategoryPostList.as_view(), name= "category_post_list"),
     path('category/<category>/remove', views.category_remove, name= "category_remove"),
     path('category/<pk>/edit',views.CategoryUpdateView.as_view(), name="category_edit"),
+
+
+    
+
    ]
+
+
+

@@ -1,0 +1,7 @@
+{% extends 'core/emails/html/layout.html' %}
+{% load static %}
+
+{% block content %}
+Hello <strong>{{ name }}</strong> -you are Invited by {{ user }}. Please click the below link to continue...
+<a href="{{redirect_url}}">Click Here</a>
+{% endblock %}

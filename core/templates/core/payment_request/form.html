@@ -1,0 +1,67 @@
+{% extends 'core/change_form.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load admin_extras %}
+{% load misc_filters %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+
+{% block page_content %}
+    <form id="{{ opts.model_name }}-form" action="" method="post" enctype="multipart/form-data" autocomplete="off">
+
+        {% include "core/partials/form_hidden_fields.html" %}
+
+        <div class="ibox float-e-margins">
+
+            {% include "core/partials/ibox_title.html" with ibox_title="Payment Request" icon_class="fas fa-sign-in-alt" only %}
+
+            <div class="ibox-content">
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        {{ form.user|as_crispy_field }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        {{ form.amount|as_crispy_field }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        {{ form.status|as_crispy_field }}
+                    </div>
+                </div>
+
+            </div>
+            <!-- /ibox-content -->
+
+        </div>
+        <!-- /ibox -->
+        <div class="modal-footer">
+            {# <a href="javascript:history.back()" class="btn btn-white">Cancel</a> #}
+
+            {% if has_add_permission or has_change_permission %}
+                {% comment %} <input type="submit" value="Save" class="btn btn-primary"> {% endcomment %}
+                <button class="btn btn-primary" type="submit"><i class="{% if save_icon %}{{ save_icon }}{% else %}fa fa-check{% endif %}"></i> {% if save_label %}{{ save_label }}{% else %}Save{% endif %}</button>
+            {% endif %}
+        </div>
+
+    </form>
+
+{% endblock %}
+
+
+{% block js %}
+{{ block.super }}
+<script src="{% static 'core/js/userroles.js' %}"></script>
+
+<script>
+    $(function() {
+        userroles.payment_request.details();
+    });
+</script>
+{% endblock %}

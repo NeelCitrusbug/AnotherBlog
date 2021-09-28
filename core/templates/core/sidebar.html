@@ -1,0 +1,215 @@
+{% load static %}
+{% load admin_extras %}
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+                <a href="{% url 'core:index' %}">
+                    <img class="nav-image" src="http://13.235.236.166/HTML/kuzo-development/assets/images/logo.png"
+                        width="100%" />
+                </a>
+                {% comment %} <div class="dropdown profile-element">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <span class="clear">
+                            <span class="block m-t-xs">
+                                <strong class="font-bold">
+                                    {% if request.user.is_authenticated %}{{ request.user }} {% endif%}
+                                </strong>
+                            </span>
+                            <span class="text-muted text-xs block">Co-Founder
+                                <b class="caret"></b>
+                            </span>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                        {% if request.user.is_authenticated %}
+                        <li>
+                            <a href="{% url 'auth:auth_logout' %}" class="nav-label">Logout</a>
+                        </li>
+                        {% endif%}
+                    </ul>
+                </div> {% endcomment %}
+                <div class="logo-element">
+                    UC
+                </div>
+            </li>
+            {% if perms.users or request.user.is_staff %}
+            <li {% if 'users/' in request.path %}class="active" {% endif %}>
+                <a href="{% url 'core:user-list' %}">
+                    <i class="fa fa-user fa-fw fa-2x"></i>
+                    <span class="nav-label">Users</span>
+                </a>
+            </li>
+            {% endif %}
+            <li {% if 'category/' in request.path %}class="active" {% elif 'influenceroffer/' in request.path
+                %}class="active" {% elif 'Influencertransferredmoney/' in request.path %}class="active" {% endif %}>
+                <a href="">
+                    <i class="fa fa-group fa-fw fa-2x"></i>
+                    <span class="nav-label">Influencer</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level">
+                    {% if perms.users or request.user.is_staff %}
+                    <li {% if 'category/' in request.path %}class="active" {% endif %}>
+                        <a href="{% url 'core:category-list' %}">Category</a>
+                    </li>
+                    {% endif %}
+                    {% if perms.users or request.user.is_staff %}
+                    <li {% if 'influenceroffer/' in request.path %}class="active" {% endif %}>
+                        <a href="{% url 'core:influenceroffer-list' %}">Influencer Offer</a>
+                    </li>
+                    {% endif %}
+
+                    {% if perms.users or request.user.is_staff %}
+                    <li {% if 'Influencertransferredmoney/' in request.path %}class="active" {% endif %}>
+                        <a href="{% url 'core:Influencertransferredmoney-list' %}">Influencer transferred money</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </li>
+            {% if perms.users or request.user.is_staff %}
+            <li {% if 'offer/' in request.path %}class="active" {% endif %}>
+                <a href="{% url 'core:offer-list' %}">
+                    <i class="fa fa-gift fa-fw fa-2x"></i>
+                    <span class="nav-label">Offer</span>
+                </a>
+            </li>
+            {% endif %}
+            {% if perms.users or request.user.is_staff %}
+            <li {% if 'banner/' in request.path %}class="active" {% endif %}>
+                <a href="{% url 'core:banner-list' %}">
+                    <i class="fa fa-picture-o fa-fw fa-2x"></i>
+                    <span class="nav-label">Banner</span>
+                </a>
+            </li>
+            {% endif %}
+            {% if perms.users or request.user.is_staff %}
+            <li {% if 'blogpost/' in request.path %}class="active" {% endif %}>
+                <a href="{% url 'core:blogpost-list' %}">
+                    <i class="fa fa-picture-o fa-fw fa-2x"></i>
+                    <span class="nav-label">Blogpost</span>
+                </a>
+            </li>
+            {% endif %}
+            {% if perms.users or request.user.is_staff %}
+            <li {% if 'blogcategory/' in request.path %}class="active" {% endif %}>
+                <a href="{% url 'core:blogcategory-list' %}">
+                    <i class="fa fa-picture-o fa-fw fa-2x"></i>
+                    <span class="nav-label">Blogcategory</span>
+                </a>
+            </li>
+            {% endif %}
+            <li {% if 'subscription-plan/' in request.path %} class="active" {% elif 'subscriptionorder/' in
+                request.path %} class="active" {% endif %}>
+                <a href="">
+                    <i class="fa fa-tasks fa-fw fa-2x"></i>
+                    <span class="nav-label">Subscription</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level">
+                    {% if perms.users or request.user.is_staff %}
+                    <li {% if 'subscription-plan/' in request.path %}class="active" {% endif %}>
+                        <a href="{% url 'core:subscriptionplan-list' %}">Subscription plan </a>
+                    </li>
+                    {% endif %}
+                    {% if perms.users or request.user.is_staff %}
+                    <li {% if 'subscriptionorder/' in request.path %}class="active" {% endif %}>
+                        <a href="{% url 'core:subscriptionorder-list' %}">User Subscriptions </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </li>
+            <li {% if 'event/' in request.path %} class="active" {% elif 'eventclass/' in request.path %} class="active"
+                {% elif 'eventorder/' in request.path %} class="active" {% elif 'agenda/' in request.path %}
+                class="active" {% elif 'eventpracticeaudienceqa/' in request.path %} class="active" {% endif %}>
+                <a href="">
+                    <i class="fa fa-calendar fa-fw fa-2x"></i>
+                    <span class="nav-label">Event</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level">
+                    {% if perms.users or request.user.is_staff %}
+                    <li {% if 'event/' in request.path %}class="active" {% endif %}>
+                        <a href="{% url 'core:event-list' %}">Event</a>
+                    </li>
+                    {% endif %}
+
+                    {% if perms.users or request.user.is_staff %}
+                    <li {% if 'eventclass/' in request.path %}class="active" {% endif %}>
+                        <a href="{% url 'core:eventclass-list' %}">Event class</a>
+                    </li>
+                    {% endif %}
+
+
+                    {% if perms.users or request.user.is_staff %}
+                    <li {% if 'eventorder/' in request.path %}class="active" {% endif %}>
+                        <a href="{% url 'core:eventorder-list' %}">Event Order</a>
+                    </li>
+                    {% endif %}
+                    {% if perms.users or request.user.is_staff %}
+                    <li {% if 'agenda/' in request.path %}class="active" {% endif %}>
+                        <a href="{% url 'core:agenda-list' %}">Event agenda</a>
+                    </li>
+                    {% endif %}
+                    {% if perms.users or request.user.is_staff %}
+                    <li {% if 'eventpracticeaudienceqa/' in request.path %}class="active" {% endif %}>
+                        <a href="{% url 'core:eventpracticeaudienceqa-list' %}">Event practice audience Q.A</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </li>
+            <li {% if 'credit/' in request.path %}class="active" {% elif 'credit-order/' in request.path
+                %}class="active" {% endif %}>
+                <a href="">
+                    <i class="fab fa-first-order fa-fw fa-2x"></i>
+                    <span class="nav-label">Credit</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level">
+                    {% if perms.users or request.user.is_staff %}
+                    <li {% if 'credit/' in request.path %}class="active" {% endif %}>
+                        <a href="{% url 'core:credit-list' %}">Credit plan</a>
+                    </li>
+                    {% endif %}
+                    {% if perms.users or request.user.is_staff %}
+                    <li {% if 'credit-order/' in request.path %}class="active" {% endif %}>
+                        <a href="{% url 'core:credit-order-list' %}">Credit order</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </li>
+            {% if perms.users or request.user.is_staff %}
+            <li {% if 'transactionlog/' in request.path %}class="active" {% endif %}>
+                <a href="{% url 'core:transactionlog-list' %}">
+                    <i class="fa fa-history fa-fw fa-2x"></i>
+                    <span class="nav-label">Transaction log</span>
+                </a>
+            </li>
+
+
+
+            {% endif %}
+
+
+
+
+
+            {% if perms.users or request.user.is_staff %}
+            <li {% if 'faq/' in request.path %}class="active" {% endif %}>
+                <a href="{% url 'core:faq-list' %}">
+                    <i class="fa fa-question-circle fa-fw fa-2x"></i>
+                    <span class="nav-label">Faq</span>
+                </a>
+            </li>
+            {% endif %}
+            {% if perms.users or request.user.is_staff %}
+            <li {% if 'mailing/' in request.path %}class="active" {% endif %}>
+                <a href="{% url 'core:contactus-list' %}">
+                    <i class="fa fa-envelope fa-fw fa-2x"></i>
+                    <span class="nav-label">Mailing List</span>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>

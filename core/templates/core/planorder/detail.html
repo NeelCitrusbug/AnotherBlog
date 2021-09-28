@@ -1,0 +1,149 @@
+{% extends 'core/change_list.html' %}
+{% load static %}
+{% load admin_extras %}
+{% load misc_filters %}
+{% load i18n %}
+
+
+{% block page_content %}
+    {% csrf_token %}
+
+    <header class="list-header card mb-4">
+        <div class="card-body clearfix">
+            <div class="float-left">
+                <h5 class="card-title">Plan Order Details</h5>
+                <p class="card-subtitle text-muted">You can print Plan order from here.</p>
+            </div>
+
+            <div class="float-right lead">
+                <a href="{% url 'core:plan-order-print' planorder.pk %}?print=true" target="_blank" class="btn btn-primary btn-lg"><i class="fa fa-print"></i> Print Invoice</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="ibox float-e-margins">
+
+        <div class="ibox-content">
+
+
+
+            <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox-content p-xl">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h5>From:</h5>
+                            <address>
+                                <strong>Innerly, Inc.</strong><br>
+                                7 Temasek Boulevard, #12-07 Suntec Tower<br>
+                                Singapore 038987<br>
+                                <abbr title="Phone" style="text-decoration: none">P:</abbr> +65 9138 8526
+                            </address>
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            <h4>Invoice No.</h4>
+                            <h4 class="text-navy">{{ planorder.id }}</h4>
+                            <span>To:</span>
+                            <address>
+                                <strong>{{ productorder.user }}</strong><br>
+                                <abbr title="Phone" style="text-decoration: none">P:</abbr> {{ planorder.user.mobile }}
+                            </address>
+                            <p>
+                                <span><strong>Invoice Date:</strong> {{ planorder.created_at }}</span><br/>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="table-responsive m-t">
+                        <table class="table invoice-table">
+
+                            <thead>
+                            <tr>
+                                <th>Item List</th>
+                                <th>Price</th>
+
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr>
+                                <td><div><strong>{{ planorder.plan.title }}</strong></div>
+                                    <small>{{ planorder.plan.description }}</small></td>
+                                <td><b>{{ planorder.final_price }}</b></td>
+                            </tr>
+                            </tbody>
+
+                        </table>
+                    </div><!-- /table-responsive -->
+                    <table class="table invoice-total">
+                        <tbody>
+                        <tr>
+                            <td><strong>TOTAL :</strong></td>
+                            <td>{{ planorder.final_price }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Payment Status :</strong></td>
+                            <td class="text-capitalize text-navy">{{ planorder.payment_status }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="table-responsive m-t">
+                        <table class="table invoice-table">
+
+                            <thead>
+                            <tr>
+                                <th><h5>Payment Details</h5></th>
+                                <th></th>
+
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr>
+                                <td><div><strong>Payment Type</strong></div>
+                                <td><b>Card</b></td>
+                            </tr>
+
+                          
+
+                            <tr>
+                                <td><div><strong>Card Brand</strong></div>
+                                    <small>Brand of the card used to pay for this order.</small></td>
+                                <td><b>{{ planorder.cards.brand }}</b></td>
+                            </tr>
+
+                            <tr>
+                                <td><div><strong>Card Last 4 Digits</strong></div>
+                                    <small>Last four digits of your card, from which you paid for this order. Please verify it.</small></td>
+                                <td><b>{{ planorder.cards.last4 }}</b></td>
+                            </tr>
+
+                            <tr>
+                                <td><div><strong>Transaction Id</strong></div>
+                                    <small>You can use this transaction id in case of any issue.</small></td>
+                                <td><b>{{ planorder.charges.balance_transaction }}</b></td>
+                            </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+
+                    <br/><br/>
+
+                    <div class="well m-t text-center"><strong>Comments :</strong>
+                        Our need for connecting with each other never stops. Connect your users - customers, members, shoppers, or lovers - wherever they are.
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block js %}
+{{ block.super }}
+
+{% endblock %}
+
