@@ -8,7 +8,8 @@
 {% block page_content %}
 {% csrf_token %}
 
-{% include "core/includes/list_header_card.html" with title="Create a new Banner" subtitle="Create a new Banner." show_button=True %}
+{% include "core/includes/list_header_card.html" with title="Create a new Banner" subtitle="Create a new Banner."
+show_button=True %}
 
 <div class="ibox float-e-margins">
 
@@ -40,14 +41,16 @@
                     {% for o in object_list %}
                     <tr>
 
-                        {% if o.image  %}
+                        {% if o.image %}
 
-                        <td><img src="{{o.image.url}}" width="85px" height="65px"><div style="display:none;">{{o.id}}</div></td>
+                        <td><img src="{{o.image.url}}" width="85px" height="65px">
+                            <div style="display:none;">{{o.id}}</div>
+                        </td>
 
                         {% endif %}
 
                         <td>{{ o.title }}</td>
-                        
+
                         <td>{{o.description | safe }}</td>
 
                         <td class="row-actions">

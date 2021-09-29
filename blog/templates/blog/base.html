@@ -17,13 +17,13 @@
     <header class="page-header">
         <div class="contanier">
             {% if user.is_authenticated %}
-            <a href="{% url 'post_new' %}" class="top-menu">
+            <a href="{% url 'blog:post_new' %}" class="top-menu">
                 {% include './icons/file-earmark-plus.svg' %}
             </a>
-            <a href="{% url 'category_list' %}" class="top-menu" style="text-decoration: none;">
+            <a href="{% url 'blog:category_list' %}" class="top-menu" style="text-decoration: none;">
                 Categories
             </a>
-            <a href="{% url 'post_draft_list' %}" class="top-menu" style="text-decoration: none;">
+            <a href="{% url 'blog:post_draft_list' %}" class="top-menu" style="text-decoration: none;">
                 <span class="glyphicon glyphicon-edit">drafts</span>
             </a>
             {% endif %}

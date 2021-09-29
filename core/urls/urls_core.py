@@ -143,18 +143,18 @@ urlpatterns += [
 
 
     # Blogpost From blog page
-    path("blogpost/", views.BlogpostListView.as_view(), name="blogpost-list"),
-    path("blogpost/create/", views.BlogpostCreateView.as_view(), name="blogpost-create"),
-    path("blogpost/<int:pk>/update/", views.BlogpostUpdateView.as_view(), name="blogpost-update"),
-    path("blogpost/<int:pk>/delete/", views.BlogpostDeleteView.as_view(), name="blogpost-delete"),
-    path("ajax-blogpost", views.BlogpostAjaxPagination.as_view(), name="blogpost-list-ajax"),
+    path("blogpost/", views.BlogpostListView.as_view(), name="post-list"),
+    path("blogpost/create/", views.BlogpostCreateView.as_view(), name="post-create"),
+    path("blogpost/<int:pk>/update/", views.BlogpostUpdateView.as_view(), name="post-update"),
+    path("blogpost/<int:pk>/delete/", views.BlogpostDeleteView.as_view(), name="post-delete"),
+    path("ajax-blogpost", views.BlogpostAjaxPagination.as_view(), name="post-list-ajax"),
 
     #Blogcategory From blog page
-    path("blogcategory/", views.BlogcategoryListView.as_view(), name="blogcategory-list"),
-    path("blogcategory/create/", views.BlogcategoryCreateView.as_view(), name="blogcategory-create"),
-    path("blogcategory/<int:pk>/update/", views.BlogcategoryUpdateView.as_view(), name="blogcategory-update"),
-    path("blogcategory/<int:pk>/delete/", views.BlogcategoryDeleteView.as_view(), name="blogcategory-delete"),
-    path("ajax-blogcategory", views.BlogcategoryAjaxPagination.as_view(), name="blogcategory-list-ajax"),
+    path("blogcategory/", views.BlogcategoryListView.as_view(), name="category-list"),
+    path("blogcategory/create/", views.BlogcategoryCreateView.as_view(), name="category-create"),
+    path("blogcategory/<int:pk>/update/", views.BlogcategoryUpdateView.as_view(), name="category-update"),
+    path("blogcategory/<int:pk>/delete/", views.BlogcategoryDeleteView.as_view(), name="category-delete"),
+    path("ajax-blogcategory", views.BlogcategoryAjaxPagination.as_view(), name="category-list-ajax"),
 ]
 
  

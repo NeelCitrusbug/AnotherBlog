@@ -47,7 +47,7 @@ class BlogpostCreateView(MyNewFormsetCreateView):
 
 class BlogpostUpdateView(MyNewFormsetUpdateView):
 
-    """View to update Blogpost """
+    """ View to update Blogpost """
 
     model = Post
     form_class = BlogpostForm

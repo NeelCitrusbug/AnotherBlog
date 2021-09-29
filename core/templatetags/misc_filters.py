@@ -55,6 +55,8 @@ def admin_urlname(value, arg):
     # print('---------------------------------------------------------------------------------',pattern)
     if value.model_name == 'Category':
         pattern = "%s:%s-%s" % ('blog', 'Category', arg)
+    # print('---------------------------------------------------------------------------------',pattern)
+       
     return pattern
 
 @register.filter

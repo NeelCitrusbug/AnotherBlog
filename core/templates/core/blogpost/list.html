@@ -11,6 +11,7 @@
 {% include "core/includes/list_header_card.html" with title="Create a new Blogpost" subtitle="Create a new Blogpost."
 show_button=True %}
 
+
 <div class="ibox float-e-margins">
 
 
@@ -67,7 +68,9 @@ show_button=True %}
 
                         <td>{{o.published_date | safe }}</td>
 
-
+                        <td class="row-actions">
+                            {% include "core/partials/list_row_actions.html" %}
+                        </td>
 
 
                     </tr>
@@ -75,6 +78,7 @@ show_button=True %}
                 </tbody>
 
             </table>
+            {{ opts.model_name }}
         </div>
     </div>
 </div>
@@ -84,5 +88,15 @@ show_button=True %}
 
 {% block js %}
 {{ block.super }}
+{% comment %}
+<script src="{% static 'core/js/userroles.js' %}"></script>
 
+<script>
+    var pagination_url = "{% url opts|admin_urlname:'list-ajax' %}";
+    $(function () {
+        userroles.post.index();
+    });
+</script>
+
+{% endcomment %}
 {% endblock %}

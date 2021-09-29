@@ -74,7 +74,7 @@ def create_post(request):
             cats = Category.objects.filter(id__in=cats)   #o/p  <QuerySet [<Category: sports>, <Category: coding>]>
             for cat in cats:
                 post.category.add(cat)
-            return redirect("post_detail", pk=post.pk)
+            return redirect("blog:post_detail", pk=post.pk)
             
     else:
         form = PostForm()
@@ -100,7 +100,7 @@ def post_edit(request, pk):
             
             for cat in cats:
                 post.category.add(cat)
-            return redirect("post_detail", pk=post.pk)
+            return redirect("blog:post_detail", pk=post.pk)
     else:
         form = PostForm(instance=post)
     return render(request, "blog/post_edit.html", {"form": form})
@@ -130,7 +130,7 @@ def post_publish(request, pk):
     """
     post = get_object_or_404(Post, pk=pk)
     post.publish()
-    return redirect("post_detail", pk=pk)
+    return redirect("blog:post_detail", pk=pk)
 
 def post_remove(request, pk):
     """
@@ -140,7 +140,7 @@ def post_remove(request, pk):
     """
     post = get_object_or_404(Post, pk=pk)
     post.delete()
-    return redirect("post_list")
+    return redirect("blog:post_list")
 
 
 class CategoryList(ListView):
@@ -208,7 +208,7 @@ def category_remove(request, category):
     """
     cats = get_object_or_404(Category, name=category)
     cats.delete()
-    return redirect('category_list')
+    return redirect('blog:category_list')
 
 
 

@@ -2,12 +2,12 @@
 
 {% block content %}
 <div style="float:left;">
-    <a href="{% url 'post_list' %}" class="btn btn-success" style="text-decoration: none;">
+    <a href="{% url 'blog:post_list' %}" class="btn btn-success" style="text-decoration: none;">
         HomePage
     </a>
 </div>
 <div style="float:right">
-    <form class="d-flex" method="get" action="{% url 'post_draft_list' %}">
+    <form class="d-flex" method="get" action="{% url 'blog:post_draft_list' %}">
         <input class="form-control me-2 searchBlog" type="search" placeholder="Search" aria-label="Search" name="query"
             id="query" style="width:75%">
         <button class="btn btn-outline-success ml-1" type="submit">Search</button>
@@ -25,7 +25,7 @@
     <time class="date">
         created: {{ post.created_date|date:'d-m-Y' }}
     </time>
-    <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
+    <h1><a href="{% url 'blog:post_detail' pk=post.pk %}">{{ post.title }}</a>
     </h1>
     {% for cat in post.category.all %}
     <h5><span class="badge bg-primary text-light">{{cat}}</span></h5>

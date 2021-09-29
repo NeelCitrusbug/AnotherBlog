@@ -41,6 +41,7 @@
                 </a>
             </li>
             {% endif %}
+            {% comment %}
             <li {% if 'category/' in request.path %}class="active" {% elif 'influenceroffer/' in request.path
                 %}class="active" {% elif 'Influencertransferredmoney/' in request.path %}class="active" {% endif %}>
                 <a href="">
@@ -75,6 +76,7 @@
                 </a>
             </li>
             {% endif %}
+            {% endcomment %}
             {% if perms.users or request.user.is_staff %}
             <li {% if 'banner/' in request.path %}class="active" {% endif %}>
                 <a href="{% url 'core:banner-list' %}">
@@ -85,7 +87,7 @@
             {% endif %}
             {% if perms.users or request.user.is_staff %}
             <li {% if 'blogpost/' in request.path %}class="active" {% endif %}>
-                <a href="{% url 'core:blogpost-list' %}">
+                <a href="{% url 'core:post-list' %}">
                     <i class="fa fa-picture-o fa-fw fa-2x"></i>
                     <span class="nav-label">Blogpost</span>
                 </a>
@@ -93,12 +95,13 @@
             {% endif %}
             {% if perms.users or request.user.is_staff %}
             <li {% if 'blogcategory/' in request.path %}class="active" {% endif %}>
-                <a href="{% url 'core:blogcategory-list' %}">
+                <a href="{% url 'core:category-list' %}">
                     <i class="fa fa-picture-o fa-fw fa-2x"></i>
                     <span class="nav-label">Blogcategory</span>
                 </a>
             </li>
             {% endif %}
+            {% comment %}
             <li {% if 'subscription-plan/' in request.path %} class="active" {% elif 'subscriptionorder/' in
                 request.path %} class="active" {% endif %}>
                 <a href="">
@@ -210,6 +213,7 @@
                 </a>
             </li>
             {% endif %}
+            {% endcomment %}
         </ul>
     </div>
 </nav>

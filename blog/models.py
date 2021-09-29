@@ -12,6 +12,10 @@ from django.utils.translation import ugettext_lazy as _
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name="Category Name", unique=True)
 
+    class Meta:
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
+
     def __str__(self):
         return self.name
 
@@ -27,6 +31,10 @@ class Post(models.Model):
     def publish(self):
         self.published_date = timezone.now()
         self.save()
+
+    class Meta:
+        verbose_name = "Post"
+        verbose_name_plural = "Posts"
 
     def __str__(self):  
         return self.title

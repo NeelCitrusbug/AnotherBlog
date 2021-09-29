@@ -1,13 +1,17 @@
 {% load misc_filters %}
 
 
-
-
 <!-- categories starts here -->
 
 {% if opts.verbose_name_plural == 'Categories' %}
-{{ opts.verbose_name_plural }}
 
+{% if has_delete_permission %}
+<a data-title="{{ o }}" title="Delete" href="{% url 'core:category-delete' o.pk|admin_urlquote %}"
+    class="btn btn-danger btn-xs btn-delete"><i class="fas fa-trash-alt"></i></a>
+{% endif %}
+
+
+{% else %}
 
 
 {% if has_view_permission or has_change_permission or has_delete_permission %}
@@ -26,27 +30,8 @@
 
 
 
-<!-- posts starts here -->
-{% if opts.verbose_name_plural == 'Posts' %}
-{{ opts.verbose_name_plural }}
 
-
-
-{% if has_view_permission or has_change_permission or has_delete_permission %}
-<a href="{% url 'core:post-update' o.pk|admin_urlquote %}" title="Edit" class="btn btn-primary btn-xs">
-    <i class="fas fa-pencil-alt"></i></a>
-{% endif %}
-
-{% if has_delete_permission %}
-<a data-title="{{ o }}" title="Delete" href="{% url 'core:post-delete' o.pk|admin_urlquote %}"
-    class="btn btn-danger btn-xs btn-delete"><i class="fas fa-trash-alt"></i></a>
-{% endif %}
-
-
-{% endif %}
-
-
-
+<!-- comments start here -->
 
 {% comment %}
 {% if opts.verbose_name_plural == 'Subscription Plan' %}
@@ -73,5 +58,6 @@
 
 
 {% endif %}
+
 
 {% endcomment %}

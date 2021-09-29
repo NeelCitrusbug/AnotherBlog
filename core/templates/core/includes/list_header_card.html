@@ -11,36 +11,43 @@
     </div>
 
     <div class="float-right lead">
-      
+
       {% if opts.verbose_name_plural == 'groups' %}
 
-      <a href="{% url opts|admin_urlname:'create' %}" class="btn btn-primary btn-lg"><i class="fa fa-plus"></i> New Role</a>
+      <a href="{% url opts|admin_urlname:'create' %}" class="btn btn-primary btn-lg"><i class="fa fa-plus"></i> New
+        Role</a>
 
-     
+
       {% elif opts.verbose_name_plural == 'Flash Deal' %}
 
-      <a href="{% url 'core:master-flash-deal' %}" class="btn btn-primary btn-lg"><i class="fa fa-plus"></i> Flash Deal Sync</a>
+      <a href="{% url 'core:master-flash-deal' %}" class="btn btn-primary btn-lg"><i class="fa fa-plus"></i> Flash Deal
+        Sync</a>
 
-      {% elif opts.verbose_name_plural == 'Credit Order'  %}
+      {% elif opts.verbose_name_plural == 'Posts' %}
 
-      {% elif  opts.verbose_name_plural == 'Mailing list' %}
+      <a href="{% url 'core:post-create' %}" class="btn btn-primary btn-lg"><i class="fa fa-plus"></i> New Post</a>
 
-      {% elif  opts.verbose_name_plural == 'User Subscriptions' %}
-      {% elif  opts.verbose_name_plural == 'Event Order' %}
-      {% elif  opts.verbose_name_plural == 'Transaction log' %}
-      {% elif  opts.verbose_name_plural == 'Influencer Transferred Money' %}
+      {% elif opts.verbose_name_plural == 'Credit Order' %}
+
+      {% elif opts.verbose_name_plural == 'Mailing list' %}
+
+      {% elif opts.verbose_name_plural == 'User Subscriptions' %}
+      {% elif opts.verbose_name_plural == 'Event Order' %}
+      {% elif opts.verbose_name_plural == 'Transaction log' %}
+      {% elif opts.verbose_name_plural == 'Influencer Transferred Money' %}
 
 
 
-     
+
       {% else %}
-  
-      <a href="{% url opts|admin_urlname:'create' %}" class="btn btn-primary btn-lg"><i class="fa fa-plus"></i> New {{ opts.verbose_name|capfirst }}</a>
-  
+
+      <a href="{% url opts|admin_urlname:'create' %}" class="btn btn-primary btn-lg"><i class="fa fa-plus"></i>
+        New {{opts.verbose_name|capfirst }}</a>
+
       {% endif %}
-      
+
     </div>
-   
+
   </div>
 </header>
 <!-- /card -->
