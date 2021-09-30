@@ -48,15 +48,19 @@ def as_json(obj):
 #     return pattern
 @register.filter
 def admin_urlname(value, arg):
+    
     # print('---------------------------------------------------------------------------------',value)
     pattern = "%s:%s-%s" % (value.app_label, value.model_name, arg)
-    if value.model_name == 'Post':
-        pattern = "%s:%s-%s" % ('blog', 'Post', arg)
+    if value.model_name == 'post':
+        pattern = "%s:%s-%s" % ('core', 'post', arg)
     # print('---------------------------------------------------------------------------------',pattern)
-    if value.model_name == 'Category':
-        pattern = "%s:%s-%s" % ('blog', 'Category', arg)
-    # print('---------------------------------------------------------------------------------',pattern)
-       
+    if value.model_name == 'category':
+        pattern = "%s:%s-%s" % ('core', 'category', arg)
+    
+    print('1234-------------------------pattern-------------------------',pattern)
+    print('1234-------------------------value.modelname-----------------',value.model_name)
+    # pattern = 'core:post-list'
+    # print('123---------------------------------------------------------------------------------',pattern)
     return pattern
 
 @register.filter

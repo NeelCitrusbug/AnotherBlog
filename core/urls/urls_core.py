@@ -77,11 +77,11 @@ urlpatterns += [
 
     # influencer category
 
-    path("category/", views.CategoryListView.as_view(), name="category-list"),
-    path("category/create/", views.CategoryCreateView.as_view(), name="category-create"),
-    path("category/<int:pk>/update/", views.CategoryUpdateView.as_view(), name="category-update"),
-    path("category/<int:pk>/delete/", views.CategoryDeleteView.as_view(), name="category-delete"),
-    path("ajax-category", views.CategoryAjaxPagination.as_view(), name="category-list-ajax"),
+    # path("category/", views.CategoryListView.as_view(), name="category-list"),
+    # path("category/create/", views.CategoryCreateView.as_view(), name="category-create"),
+    # path("category/<int:pk>/update/", views.CategoryUpdateView.as_view(), name="category-update"),
+    # path("category/<int:pk>/delete/", views.CategoryDeleteView.as_view(), name="category-delete"),
+    # path("ajax-category", views.CategoryAjaxPagination.as_view(), name="category-list-ajax"),
 
 
     # event
@@ -143,18 +143,18 @@ urlpatterns += [
 
 
     # Blogpost From blog page
-    path("blogpost/", views.BlogpostListView.as_view(), name="post-list"),
-    path("blogpost/create/", views.BlogpostCreateView.as_view(), name="post-create"),
-    path("blogpost/<int:pk>/update/", views.BlogpostUpdateView.as_view(), name="post-update"),
-    path("blogpost/<int:pk>/delete/", views.BlogpostDeleteView.as_view(), name="post-delete"),
-    path("ajax-blogpost", views.BlogpostAjaxPagination.as_view(), name="post-list-ajax"),
+    path("post/", views.BlogpostListView.as_view(), name="post-list"),
+    path("post/create/", views.BlogpostCreateView.as_view(), name="post-create"),
+    path("post/<int:pk>/update/", views.BlogpostUpdateView.as_view(), name="post-update"),
+    path("post/<int:pk>/delete/", views.BlogpostDeleteView.as_view(), name="post-delete"),
+    path("ajax-post", views.BlogpostAjaxPagination.as_view(), name="post-list-ajax"),
 
     #Blogcategory From blog page
-    path("blogcategory/", views.BlogcategoryListView.as_view(), name="category-list"),
-    path("blogcategory/create/", views.BlogcategoryCreateView.as_view(), name="category-create"),
-    path("blogcategory/<int:pk>/update/", views.BlogcategoryUpdateView.as_view(), name="category-update"),
-    path("blogcategory/<int:pk>/delete/", views.BlogcategoryDeleteView.as_view(), name="category-delete"),
-    path("ajax-blogcategory", views.BlogcategoryAjaxPagination.as_view(), name="category-list-ajax"),
+    path("category/", views.BlogcategoryListView.as_view(), name="category-list"),
+    path("category/create/", views.BlogcategoryCreateView.as_view(), name="category-create"),
+    path("category/<int:pk>/update/", views.BlogcategoryUpdateView.as_view(), name="category-update"),
+    path("category/<int:pk>/delete/", views.BlogcategoryDeleteView.as_view(), name="category-delete"),
+    path("ajax-category", views.BlogcategoryAjaxPagination.as_view(), name="category-list-ajax"),
 ]
 
  

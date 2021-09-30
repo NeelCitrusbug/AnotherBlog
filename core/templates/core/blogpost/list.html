@@ -8,9 +8,8 @@
 {% block page_content %}
 {% csrf_token %}
 
-{% include "core/includes/list_header_card.html" with title="Create a new Blogpost" subtitle="Create a new Blogpost."
-show_button=True %}
-
+{% include "core/includes/list_header_card.html" with title="Create a new Blogpost"
+subtitle="Create a new Blogpost." show_button=True %}
 
 <div class="ibox float-e-margins">
 
@@ -88,7 +87,6 @@ show_button=True %}
 
 {% block js %}
 {{ block.super }}
-{% comment %}
 <script src="{% static 'core/js/userroles.js' %}"></script>
 
 <script>
@@ -98,5 +96,4 @@ show_button=True %}
     });
 </script>
 
-{% endcomment %}
 {% endblock %}

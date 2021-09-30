@@ -66,7 +66,7 @@ class BlogpostDeleteView(MyDeleteView):
     template_name = "core/confirm_delete.html"
     permission_required = ("core.delete_blogpost",)
 
-
+    
 class BlogpostAjaxPagination(DataTableMixin, HasPermissionsMixin, MyLoginRequiredView):
 
     """

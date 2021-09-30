@@ -18,7 +18,8 @@ urlpatterns = [
     path('category/<pk>/edit',views.CategoryUpdateView.as_view(), name="category_edit"),
 
 
-    
+    path('blogpost-list/', views.blogpost_list),
+    path('blogpost-detail/<int:pk>/', views.blogpost_detail),
 
    ]
 
