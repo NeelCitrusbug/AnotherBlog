@@ -26,6 +26,8 @@ from multi_form_view import MultiFormView, MultiModelFormView
 from ..mixins import HasPermissionsMixin, ModelOptsMixin, SuccessMessageMixin
 from ..utils import admin_urlname, get_deleted_objects
 
+from blog.models import Category,Post
+
 MSG_CREATED = '"{}" created successfully.'
 MSG_UPDATED = '"{}" updated successfully.'
 MSG_DELETED = '"{}" deleted successfully.'
@@ -193,6 +195,11 @@ class MyDeleteView(
 
     def get_success_url(self):
         print("MyDeleteView:: get_success_url")
+        if self.model == Category:
+            return reverse('core:category-list')
+
+        if self.model == Post:
+            return reverse('core:post-list')
         opts = self.model._meta
         return reverse(admin_urlname(opts, "list"))
 
@@ -303,8 +310,16 @@ class MyNewFormsetCreateView(
     def get_success_url(self):
         # TODO: Should be moved to form_valid
         messages.success(self.request, MSG_CREATED.format(self.object))
-        opts = self.model._meta
-        return reverse(admin_urlname(opts, "list"))
+        
+        if self.model == Category:
+            return reverse('core:category-list')
+
+        if self.model == Post:
+            return reverse('core:post-list')
+
+        opts = self.model._meta    # here o/p for opts is --> blog.category   
+                                                                                         
+        return reverse(admin_urlname(opts, "list")) # o/p for admin_urlname is --> blog:category-list
 
 
     def has_permission(self):
@@ -332,8 +347,13 @@ class MyNewFormsetUpdateView(
     def get_success_url(self):
          # TODO: Should be moved to form_valid
         messages.success(self.request, MSG_UPDATED.format(self.object))
+        if self.model == Category:
+            return reverse('core:category-list')
+
+        if self.model == Post:
+            return reverse('core:post-list')
         opts = self.model._meta
-        return reverse(admin_urlname(opts, "list"))
+        return reverse(admin_urlname(opts, "list"))    
 
     def has_permission(self):
 

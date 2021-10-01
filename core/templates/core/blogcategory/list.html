@@ -8,8 +8,7 @@
 {% block page_content %}
 {% csrf_token %}
 
-{% include "core/includes/list_header_card.html" with title="Create a new Blogcategory"
-subtitle="Create a new Blogcategory."show_button=True %}
+{%include "core/includes/list_header_card.html" with title="Create a new Category" subtitle="Create a new Category."%}
 
 <div class="ibox float-e-margins">
 
@@ -52,7 +51,7 @@ subtitle="Create a new Blogcategory."show_button=True %}
                 </tbody>
 
             </table>
-            {{ opts.model_name }}
+
         </div>
     </div>
 </div>
@@ -63,12 +62,10 @@ subtitle="Create a new Blogcategory."show_button=True %}
 {% block js %}
 {{ block.super }}
 <script src="{% static 'core/js/userroles.js' %}"></script>
-
 <script>
     var pagination_url = "{% url opts|admin_urlname:'list-ajax' %}";
     $(function () {
-        userroles.category.index();
+        userroles.post.index();
     });
 </script>
-
 {% endblock %}

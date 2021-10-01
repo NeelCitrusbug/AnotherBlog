@@ -28,7 +28,7 @@ class BlogcategoryListView(MyListView):
     """
 
     model = Category
-    queryset = model.objects.all().order_by("name")
+    queryset = model.objects.all().order_by("id")
     template_name = "core/blogcategory/list.html"
     permission_required = ("core.view_blogcategory",)
 

@@ -17,9 +17,9 @@ urlpatterns = [
     path('category/<category>/remove', views.category_remove, name= "category_remove"),
     path('category/<pk>/edit',views.CategoryUpdateView.as_view(), name="category_edit"),
 
-
-    path('blogpost-list/', views.blogpost_list),
-    path('blogpost-detail/<int:pk>/', views.blogpost_detail),
+    #django rest framwork urlpatterns starts here
+    path('blogpost-list/', views.BlogpostList.as_view()),
+    path('blogpost-detail/<int:pk>/', views.BlogpostDetail.as_view()),
 
    ]
 

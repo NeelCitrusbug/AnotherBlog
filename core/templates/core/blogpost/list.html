@@ -8,8 +8,7 @@
 {% block page_content %}
 {% csrf_token %}
 
-{% include "core/includes/list_header_card.html" with title="Create a new Blogpost"
-subtitle="Create a new Blogpost." show_button=True %}
+{% include "core/includes/list_header_card.html" with title="Create a new Blogpost" subtitle="Create a new Blogpost." %}
 
 <div class="ibox float-e-margins">
 
@@ -59,7 +58,11 @@ subtitle="Create a new Blogpost." show_button=True %}
 
                         <td>{{o.title | safe }}</td>
 
-                        <td>{{o.category.all | safe }}</td>
+                        <td>
+                            {% for cat in o.category.all %}
+                            {{ cat | safe}}
+                            {% endfor %}
+                        </td>
 
                         <td>{{o.text | safe }}</td>
 
@@ -77,7 +80,7 @@ subtitle="Create a new Blogpost." show_button=True %}
                 </tbody>
 
             </table>
-            {{ opts.model_name }}
+
         </div>
     </div>
 </div>
@@ -88,12 +91,10 @@ subtitle="Create a new Blogpost." show_button=True %}
 {% block js %}
 {{ block.super }}
 <script src="{% static 'core/js/userroles.js' %}"></script>
-
 <script>
     var pagination_url = "{% url opts|admin_urlname:'list-ajax' %}";
     $(function () {
         userroles.post.index();
     });
 </script>
-
 {% endblock %}

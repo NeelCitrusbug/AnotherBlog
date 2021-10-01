@@ -12,6 +12,7 @@
 {% if has_view_permission or has_change_permission or has_delete_permission %}
 <a href="{% url opts|admin_urlname:'update' o.pk|admin_urlquote %}" title="Edit" class="btn btn-primary btn-xs"><i
         class="fas fa-pencil-alt"></i></a>
+
 {% endif %}
 
 {% if has_delete_permission %}
@@ -21,7 +22,6 @@
 
 
 {% endif %}
-
 
 
 
