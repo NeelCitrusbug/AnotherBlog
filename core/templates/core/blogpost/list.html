@@ -8,7 +8,7 @@
 {% block page_content %}
 {% csrf_token %}
 
-{% include "core/includes/list_header_card.html" with title="Create a new Blogpost" subtitle="Create a new Blogpost." %}
+{% include "core/includes/list_header_card.html" with title="Create a new Blogpost" subtitle="Create a new Blogpost." show_button=True %}
 
 <div class="ibox float-e-margins">
 
@@ -64,7 +64,11 @@
                             {% endfor %}
                         </td>
 
-                        <td>{{o.text | safe }}</td>
+                        <td>{{o.text|slice:":200" | safe }}
+                            {% if o.text|length > 200 %}
+                            ...
+                            {% endif %}
+                        </td>
 
                         <td>{{o.created_date | safe }}</td>
 

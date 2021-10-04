@@ -13,7 +13,8 @@ from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from blog.models import Post
-from blog.serializers import PostSerializer
+# from blog.serializers import PostSerializer
+from blog.api.serializers import PostSerializer
 
 #requirements for classbased api
 from django.http import Http404
@@ -204,101 +205,7 @@ def category_remove(request, category):
     return redirect('blog:category_list')
 
 
-#------------------API CALL USING FUNCTION BASED VIEWS-----------------------#
-
-# @csrf_exempt
-# def blogpost_list(request):
-#     """
-#     List all blog posts, or create a new post.
-#     """
-#     if request.method == 'GET':
-#         posts = Post.objects.all()
-#         serializer = PostSerializer(posts, many=True)
-#         return JsonResponse(serializer.data, safe=False)
-
-#     elif request.method == 'POST':
-#         data = JSONParser().parse(request)
-#         serializer = PostSerializer(data=data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return JsonResponse(serializer.data, status=201)
-#         return JsonResponse(serializer.errors, status=400)
 
 
 
-# @csrf_exempt
-# def blogpost_detail(request, pk):
-#     """
-#     Retrieve, update or delete a code snippet.
-#     """
-#     try:
-#         post = Post.objects.get(pk=pk)
-#     except Post.DoesNotExist:
-#         return HttpResponse(status=404)
 
-#     if request.method == 'GET':
-#         serializer = PostSerializer(post)
-#         return JsonResponse(serializer.data)
-
-#     elif request.method == 'PUT':
-#         data = JSONParser().parse(request)
-#         serializer = PostSerializer(post, data=data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return JsonResponse(serializer.data)
-#         return JsonResponse(serializer.errors, status=400)
-
-#     elif request.method == 'DELETE':
-#         post.delete()
-#         return HttpResponse(status=204)
-
-
-
-#------------------API CALL USING CLASS BASED VIEWS-----------------------#
-
-class BlogpostList(APIView):
-    """
-    List all posts, or create a new post.
-    """
-
-    def get(self, request, format=None):
-        posts = Post.objects.all()
-        serializer = PostSerializer(posts, many=True)
-        return Response(serializer.data)
-
-    def post(self, request, format=None):
-        serializer = PostSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-
-class BlogpostDetail(APIView):
-    """
-    Retrieve, update or delete a snippet instance.
-    """
-    def get_object(self, pk):
-        try:
-            return Post.objects.get(pk=pk)
-        except Post.DoesNotExist:
-            raise Http404
-
-    def get(self, request, pk, format=None):
-        post = self.get_object(pk)
-        serializer = PostSerializer(post)
-        return Response(serializer.data)
-
-    def put(self, request, pk, format=None):
-        post = self.get_object(pk)
-        serializer = PostSerializer(post, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def delete(self, request, pk, format=None):
-        post = self.get_object(pk)
-        post.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)

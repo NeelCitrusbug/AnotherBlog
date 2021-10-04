@@ -8,7 +8,7 @@
 {% block page_content %}
 {% csrf_token %}
 
-{%include "core/includes/list_header_card.html" with title="Create a new Category" subtitle="Create a new Category."%}
+{%include "core/includes/list_header_card.html" with title="Create a new Category" subtitle="Create a new Category." show_button=True %}
 
 <div class="ibox float-e-margins">
 
@@ -65,7 +65,7 @@
 <script>
     var pagination_url = "{% url opts|admin_urlname:'list-ajax' %}";
     $(function () {
-        userroles.post.index();
+        userroles.category.index();
     });
 </script>
 {% endblock %}

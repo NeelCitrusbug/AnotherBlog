@@ -5,8 +5,8 @@
         <ul class="nav metismenu" id="side-menu">
             <li class="nav-header">
                 <a href="{% url 'core:index' %}">
-                    <img class="nav-image" src="http://13.235.236.166/HTML/kuzo-development/assets/images/logo.png"
-                        width="100%" />
+                    <!-- <img class="nav-image" src="http://13.235.236.166/HTML/kuzo-development/assets/images/logo.png" width="100%" /> -->
+                    <img class="nav-image mr-5" src="{% static 'core/img/home-logo.png' %}" width="20%" />Home
                 </a>
                 {% comment %} <div class="dropdown profile-element">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -42,8 +42,7 @@
             </li>
             {% endif %}
             {% comment %}
-            <li {% if 'category/' in request.path %}class="active" {% elif 'influenceroffer/' in request.path
-                %}class="active" {% elif 'Influencertransferredmoney/' in request.path %}class="active" {% endif %}>
+            <li {% if 'category/' in request.path %}class="active" {% elif 'influenceroffer/' in request.path %}class="active" {% elif 'Influencertransferredmoney/' in request.path %}class="active" {% endif %}>
                 <a href="">
                     <i class="fa fa-group fa-fw fa-2x"></i>
                     <span class="nav-label">Influencer</span>
@@ -102,8 +101,7 @@
             </li>
             {% endif %}
             {% comment %}
-            <li {% if 'subscription-plan/' in request.path %} class="active" {% elif 'subscriptionorder/' in
-                request.path %} class="active" {% endif %}>
+            <li {% if 'subscription-plan/' in request.path %} class="active" {% elif 'subscriptionorder/' in request.path %} class="active" {% endif %}>
                 <a href="">
                     <i class="fa fa-tasks fa-fw fa-2x"></i>
                     <span class="nav-label">Subscription</span>
@@ -122,9 +120,8 @@
                     {% endif %}
                 </ul>
             </li>
-            <li {% if 'event/' in request.path %} class="active" {% elif 'eventclass/' in request.path %} class="active"
-                {% elif 'eventorder/' in request.path %} class="active" {% elif 'agenda/' in request.path %}
-                class="active" {% elif 'eventpracticeaudienceqa/' in request.path %} class="active" {% endif %}>
+            <li {% if 'event/' in request.path %} class="active" {% elif 'eventclass/' in request.path %} class="active" {% elif 'eventorder/' in request.path %} class="active" {% elif 'agenda/' in request.path %} class="active" {% elif 'eventpracticeaudienceqa/' in request.path %} class="active" {%
+                endif %}>
                 <a href="">
                     <i class="fa fa-calendar fa-fw fa-2x"></i>
                     <span class="nav-label">Event</span>
@@ -161,8 +158,7 @@
                     {% endif %}
                 </ul>
             </li>
-            <li {% if 'credit/' in request.path %}class="active" {% elif 'credit-order/' in request.path
-                %}class="active" {% endif %}>
+            <li {% if 'credit/' in request.path %}class="active" {% elif 'credit-order/' in request.path %}class="active" {% endif %}>
                 <a href="">
                     <i class="fab fa-first-order fa-fw fa-2x"></i>
                     <span class="nav-label">Credit</span>

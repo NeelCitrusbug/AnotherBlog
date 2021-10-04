@@ -28,7 +28,7 @@
           <div class="ibox-tools">
             <span class="label label-success float-right">Monthly</span>
           </div>
-          <h5>All Registered  Users</h5>
+          <h5>All Registered Users</h5>
         </div>
         <div class="ibox-content">
           <h3 class="no-margins">{{ user_count }}</h3>
@@ -37,6 +37,7 @@
         </div>
       </div>
     </div>
+    {% comment %}
     <div class="col-lg-3">
       <div class="ibox ">
         <div class="ibox-title">
@@ -56,21 +57,6 @@
       <div class="ibox ">
         <div class="ibox-title">
           <div class="ibox-tools">
-            <span class="label label-primary float-right">Today</span>
-          </div>
-          <h5>Active subscription</h5>
-        </div>
-        <div class="ibox-content">
-          <h3 class="no-margins">{{ get_active_plan }}</h3>
-          <div class="stat-percent font-bold text-navy">44% <i class="fa fa-thumbs-up"></i></div>
-          <small>Recently created</small>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3">
-      <div class="ibox ">
-        <div class="ibox-title">
-          <div class="ibox-tools">
             <span class="label label-danger float-right">Low value</span>
           </div>
           <h5>Registered Event</h5>
@@ -82,9 +68,41 @@
         </div>
       </div>
     </div>
+
+    {% endcomment %}
+    <div class="col-lg-3">
+      <div class="ibox ">
+        <div class="ibox-title">
+          <div class="ibox-tools">
+            <span class="label label-primary float-right">Today</span>
+          </div>
+          <h5>Total Posts</h5>
+        </div>
+        <div class="ibox-content">
+          <h3 class="no-margins">{{ get_post }}</h3>
+          <div class="stat-percent font-bold text-navy">44% <i class="fa fa-thumbs-up"></i></div>
+          <small>Recently created</small>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="ibox ">
+        <div class="ibox-title">
+          <div class="ibox-tools">
+            <span class="label label-primary float-right">Today</span>
+          </div>
+          <h5>Total Categories</h5>
+        </div>
+        <div class="ibox-content">
+          <h3 class="no-margins">{{ get_category }}</h3>
+          <div class="stat-percent font-bold text-navy">44% <i class="fa fa-thumbs-up"></i></div>
+          <small>Recently created</small>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
-
 
 
 <div class="row">
@@ -118,6 +136,23 @@
                 </div>
               </li>
               <li>
+                <h2 class="no-margins"></h2>
+                <small>Total Posts</small>
+                <div class="stat-percent">60% <i class="fa fa-arrow-up text-navy"></i></div>
+                <div class="progress progress-mini">
+                  <div style="width: 48%;" class="progress-bar"></div>
+                </div>
+              </li>
+              <li>
+                <h2 class="no-margins"></h2>
+                <small>Total Categories</small>
+                <div class="stat-percent">50% <i class="fa fa-arrow-up text-navy"></i></div>
+                <div class="progress progress-mini">
+                  <div style="width: 48%;" class="progress-bar"></div>
+                </div>
+              </li>
+              {% comment %}
+              <li>
                 <h2 class="no-margins ">{{ get_total_invited_user }}</h2>
                 <small>Recent Invited Users</small>
                 <div class="stat-percent">60% <i class="fa fa-arrow-down text-navy"></i></div>
@@ -141,6 +176,7 @@
                   <div style="width: 38%;" class="progress-bar"></div>
                 </div>
               </li>
+              {% endcomment %}
             </ul>
           </div>
         </div>

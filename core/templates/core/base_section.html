@@ -4,28 +4,30 @@
 {% block title %}{% endblock%}
 
 {% block css %}
-    {{ block.super }}
-    <link href="{% static 'core/css/plugins/iCheck/custom.css' %}" rel="stylesheet">
-    <link href="{% static 'core/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css' %}" rel="stylesheet">
-    <link href="{% static 'core/css/plugins/dualListbox/bootstrap-duallistbox.min.css' %}" rel="stylesheet">
-    <link href="{% static 'core/css/plugins/dataTables/datatables.min.css' %}" rel="stylesheet">
-    <!-- <link href="{% static 'core/css/plugins/datapicker/datepicker3.css' %}" rel="stylesheet"> -->
-    <link href="{% static 'core/js/datetimepicker/bootstrap-datetimepicker.min.css' %}" rel="stylesheet">
-    {% comment %} <link href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet"> {% endcomment %}
-    <link href="{% static 'core/js/dragula/dragula.min.css' %}" rel="stylesheet">
-    <link href="{% static 'core/css/plugins/jasny/jasny-bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'core/css/plugins/chosen/bootstrap-chosen.css' %}" rel="stylesheet">
-    <link href="{% static 'core/js/trix/trix.css' %}" rel="stylesheet">
-    <link href="{% static 'core/js/ekko-lightbox/ekko-lightbox.css' %}" rel="stylesheet">
+{{ block.super }}
+<link href="{% static 'core/css/plugins/iCheck/custom.css' %}" rel="stylesheet">
+<link href="{% static 'core/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css' %}" rel="stylesheet">
+<link href="{% static 'core/css/plugins/dualListbox/bootstrap-duallistbox.min.css' %}" rel="stylesheet">
+<link href="{% static 'core/css/plugins/dataTables/datatables.min.css' %}" rel="stylesheet">
+<!-- <link href="{% static 'core/css/plugins/datapicker/datepicker3.css' %}" rel="stylesheet"> -->
+<link href="{% static 'core/js/datetimepicker/bootstrap-datetimepicker.min.css' %}" rel="stylesheet">
+{% comment %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet"> {% endcomment %}
+<link href="{% static 'core/js/dragula/dragula.min.css' %}" rel="stylesheet">
+<link href="{% static 'core/css/plugins/jasny/jasny-bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'core/css/plugins/chosen/bootstrap-chosen.css' %}" rel="stylesheet">
+<link href="{% static 'core/js/trix/trix.css' %}" rel="stylesheet">
+<link href="{% static 'core/js/ekko-lightbox/ekko-lightbox.css' %}" rel="stylesheet">
 
 
-    {% comment %} <link href="{% static 'core/css/plugins/select2/select2.min.css' %}" rel="stylesheet">
-    <link href="{% static 'core/css/plugins/select2/select2-bootstrap4.min.css' %}" rel="stylesheet"> {% endcomment %}
+{% comment %}
+<link href="{% static 'core/css/plugins/select2/select2.min.css' %}" rel="stylesheet">
+<link href="{% static 'core/css/plugins/select2/select2-bootstrap4.min.css' %}" rel="stylesheet"> {% endcomment %}
 {% endblock %}
 
 {% block js_head %}
-    {{ block.super }}
-    <script>window.CKEDITOR_BASEPATH = "{% static 'ckeditor/ckeditor/' %}";</script>
+{{ block.super }}
+<script>window.CKEDITOR_BASEPATH = "{% static 'ckeditor/ckeditor/' %}";</script>
 {% endblock %}
 
 {% block breadcrumbs %}
@@ -42,9 +44,9 @@
 {% endblock %}
 
 {% block content %}
-    {% block formset_errors %}{% endblock%}
+{% block formset_errors %}{% endblock%}
 
-    {% block page_content %}{% endblock%}
+{% block page_content %}{% endblock%}
 {% endblock%}
 
 {% block js %}
@@ -70,7 +72,8 @@
 <!-- Datetime picker -->
 <!-- <script src="{% static 'core/js/plugins/datapicker/bootstrap-datepicker.js' %}"></script> -->
 <script src="{% static 'core/js/datetimepicker/bootstrap-datetimepicker.min.js' %}"></script>
-{% comment %} <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script> {% endcomment %}
+{% comment %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script> {% endcomment %}
 
 <!-- iCheck -->
 <script src="{% static 'core/js/plugins/iCheck/icheck.min.js' %}"></script>
@@ -88,7 +91,7 @@
 <!-- Ekko lightbox -->
 <script src="{% static 'core/js/ekko-lightbox/ekko-lightbox.js' %}"></script>
 <script>
-    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+    $(document).on('click', '[data-toggle="lightbox"]', function (event) {
         event.preventDefault();
         $(this).ekkoLightbox();
     });
@@ -97,7 +100,8 @@
 <!-- Typehead -->
 <script src="{% static 'core/js/plugins/typehead/bootstrap3-typeahead.min.js' %}"></script>
 
-{% comment %} <!-- Select2 -->
+{% comment %}
+<!-- Select2 -->
 <script src="{% static 'core/js/plugins/select2/select2.full.min.js' %}"></script> {% endcomment %}
 
 <!-- Ckeditor -->

@@ -45,6 +45,7 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
     path('', include('blog.urls')),
+    path('api/v1/',include('blog.api.urls')),
     path("select2/", include("django_select2.urls")),
     
 ]

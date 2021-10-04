@@ -20,8 +20,8 @@ from core.views.generic import (
 
 from core.models import User, UserProfile, SubscriptionOrder, EventOrder
 from ..forms import MyUserChangeForm, MyUserCreationForm, UserProfileForm
-
-
+from blog.models import Post,Category
+from django.utils import timezone
 # -----------------------------------------------------------------------------
 # Users
 # -----------------------------------------------------------------------------
@@ -37,13 +37,16 @@ class IndexView(LoginRequiredMixin, TemplateView):
         influencer_users = User.objects.filter(is_influencer=True).count()
         get_active_plan = SubscriptionOrder.objects.filter(plan_status="active").count()
         get_event = EventOrder.objects.filter(order_status="success").count()
-
+        get_post = Post.objects.all().count()
+        get_category = Category.objects.all().count()
         self.context = {
             "user_count": get_total_user,
             "recent_users": recent_users,
             "influencer_users": influencer_users,
             "get_active_plan": get_active_plan,
             "get_event": get_event,
+            "get_post": get_post,
+            "get_category": get_category,
         }
 
         return render(request, self.template_name, self.context)

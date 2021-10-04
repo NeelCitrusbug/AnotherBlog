@@ -36,40 +36,43 @@
   <!-- Cropper -->
   <link href="{% static 'core/css/cropper.min.css' %}" rel="stylesheet">
 
-<style>
+  <style>
+    .nav.metismenu>li {
+      display: block;
+      width: 100%;
+      position: relative;
+      background-color: black;
+    }
 
+    .btn-primary {
+      color: #fff;
+      background-color: black;
+      border-color: black;
+    }
 
-.nav.metismenu>li {
-    display: block;
-    width: 100%;
-    position: relative;
-    background-color: black;
-}
-.btn-primary {
-    color: #fff;
-    background-color: black;
-    border-color: black;
-}
+    .page-item.active .page-link {
+      background-color: black;
+      border-color: black;
+    }
 
-.page-item.active .page-link {
-    background-color: black;
-    border-color:black;
-}
+    .nav.navbar-right li a {
+      color: black;
 
-.nav.navbar-right li a {
-    color:black;
-  
-}
+    }
 
-.btn-primary.disabled, .btn-primary.focus, .btn-primary:disabled, .btn-primary:focus, .btn-primary:hover, .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
-    background-color: black;
-    border-color: black;
-    color: #fff;
-}
-
-
-
-</style>
+    .btn-primary.disabled,
+    .btn-primary.focus,
+    .btn-primary:disabled,
+    .btn-primary:focus,
+    .btn-primary:hover,
+    .btn-primary:not(:disabled):not(.disabled).active,
+    .btn-primary:not(:disabled):not(.disabled):active,
+    .show>.btn-primary.dropdown-toggle {
+      background-color: black;
+      border-color: black;
+      color: #fff;
+    }
+  </style>
 
   {% endblock css %}
 
@@ -102,16 +105,16 @@
           </div>
           <ul class="nav navbar-top-links text-center">
             <li>
-              <h5 class="">Welcome to Kuzo class !</h5>
+              <h5 class="">Welcome to Djangogirlsblog !</h5>
             </li>
           </ul>
           <ul class="nav navbar-top-links navbar-right">
 
             {% if request.user.is_authenticated %}
             <li>
-                <a href="{% url 'core:user-update' pk=request.user.pk %}">
+              <a href="{% url 'core:user-update' pk=request.user.pk %}">
                 <i class="fa fa-user"></i> {{ request.user }}
-                </a>
+              </a>
             </li>
             <li>
               <a href="{% url 'auth:auth_logout' %}">
@@ -131,7 +134,7 @@
 
       <div class="footer fixed">
         <div>
-          <strong>Copyright </strong> &copy; Kuzo class  {% now 'Y' %}
+          <strong>Copyright </strong> &copy; Kuzo class {% now 'Y' %}
         </div>
       </div>
 
@@ -143,7 +146,8 @@
   <script src="{% static 'core/js/jquery-3.1.1.min.js' %}"></script>
   <script src="{% static 'core/js/popper.min.js' %}"></script>
   <script src="{% static 'core/js/bootstrap.min.js' %}"></script>
-  {% comment %} <script src="//code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  {% comment %}
+  <script src="//code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> {% endcomment %}
 
