@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     "sorl.thumbnail",
     "drf_multiple_model",
     "django_countries",
+    "django_cron",
 ]
 
 SITE_ID = 1
@@ -75,6 +76,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+CRON_CLASSES = [
+    "blog.cron.MyCronJob",
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -187,4 +192,10 @@ STATIC_ROOT = BASE_DIR / 'static'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'neel.citrusbug@gmail.com'
+EMAIL_HOST_PASSWORD = '47i*tOT*ZL#ta@?UGo13'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False

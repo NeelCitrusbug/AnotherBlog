@@ -23,6 +23,8 @@ from rest_framework.response import Response
 from rest_framework import status
 
 
+# Post Views Starts Here
+
 def post_list(request):
     """
         it passes list of posts objects that are published to post_list template
@@ -137,6 +139,8 @@ def post_remove(request, pk):
     return redirect("blog:post_list")
 
 
+# Category Views Starts Here
+
 class CategoryList(ListView):
     """
     Used to give the list of categories
@@ -203,8 +207,6 @@ def category_remove(request, category):
     cats = get_object_or_404(Category, name=category)
     cats.delete()
     return redirect('blog:category_list')
-
-
 
 
 

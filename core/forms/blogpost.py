@@ -30,6 +30,6 @@ class BlogpostForm(forms.ModelForm):
         self.fields['category'].required = True
         self.fields['text'].required = True
         self.fields['created_date'].required = True
-        self.fields['published_date'].required = True
+        
 
 

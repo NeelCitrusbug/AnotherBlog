@@ -39,7 +39,7 @@ class Emails:
 #    def set_message(self, txt_temp, context):
 #        plaintext      = get_template(self.base_emails_text_path+txt_temp)
 #        self.message = plaintext.render(context)
-
+                
 
     def send(self):
 
